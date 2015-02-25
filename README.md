@@ -48,16 +48,14 @@ I may eventually add an install file, but for the time being I'll just leave it 
 Feel free to fork the resp to edit and create or update more features
 
 #features
-
-Includes lots of features
-2factor authentication -- if this feature is set; to login the user needs to input the code from their phone.
-Buy and sell coins
-Built in messaging system, message the user when they add IP's etc
-Whitelist IPs (if a user set an IP they will only be able to login with that IP on that account
-Login history
-Trade history
-View open orders
-View trades, which has an invoice that you can print
-Public API
-Graph chart to show prices for the day and volume On the dashboard the title has an updating price for the market you are viewing, so you can watch Youtube videos or browse the internet and view the market price without having to be on the website
-Voice trading,trade using your voice.
+    - Includes lots of features
+    - 2factor authentication -- if this feature is set; to login the user needs to input the code from their phone.
+    - Buy and sell coins
+    - Built in messaging system, message the user when they add IP's etc
+    - Whitelist IPs (if a user set an IP they will only be able to login with that IP on that account
+    - Login history
+    - Trade history
+    - View open orders
+    - View trades, which has an invoice that you can print
+    - Public API
+    - Graph chart to show prices for the day and volume On the dashboard the title has an updating price for the market you        are viewing, so you can watch Youtube videos or browse the internet and view the market price without having to be on        the website Voice trading,trade using your voice.
