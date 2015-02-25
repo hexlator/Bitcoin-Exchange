@@ -11,19 +11,37 @@ $(document).ready(function()
     {
       var checkboxsidebar = '';
     }
+	
     if ($('#expandedchat').is(':checked'))
     {
       var checkboxexpandedchat = '1';
-    }
-    else
+    }else
     {
-      var checkboxexpandedchat = '0';
+      var checkboxexpandedchat = '';
     }
+	
+    if ($('#voicetrading').is(':checked'))
+    {
+      var voicetrading = '1';
+    } else
+    {
+      var voicetrading = '';
+    } 
+	
+	
+    if ($('#emailonwithdraw').is(':checked'))
+    {
+      var emailonwithdraw = '1';
+    }else
+    {
+      var emailonwithdraw = '';
+    }
+
     $.ajax(
     {
       type: 'POST',
       url: '<?php echo URL;?>user/editinformation/',
-      data: 'email=' + $('#email').val() + '&password=' + $('#password').val() + '&expandedsidebar=' + checkboxsidebar + '&expandedchat=' + checkboxexpandedchat + '&token=<?php echo $_SESSION['token'];?>',
+      data: 'email=' + $('#email').val() + '&password=' + $('#password').val() + '&expandedsidebar=' + checkboxsidebar + '&expandedchat=' + checkboxexpandedchat + '&token=<?php echo $_SESSION['token'];?>'+ '&voicetrading=' + voicetrading + '&emailonwithdraw=' + emailonwithdraw,
       success: function(msg)
       {
         $('#updateinformation').html(msg);
@@ -145,11 +163,20 @@ $(document).ready(function()
   <label class="col-sm-6 control-label"><?php _ex("Email on withdraw "); ?></label>
   <div class="col-sm-6">
     <div class="form-block">
-      <input id="notifywithdraw" value="" name="notifywithdraw" <?php if($user->withdrawnotify == 1){ echo 'checked '; } ?> type="checkbox" class="iswitch iswitch-secondary">
+      <input id="emailonwithdraw" value="" name="notifywithdraw" <?php if($user->withdrawnotify == 1){ echo 'checked '; } ?> type="checkbox" class="iswitch iswitch-secondary">
     </div>
   </div>
 </div>
-</div></div>
+<div class="col-xs-6">
+    <label class="col-sm-6 control-label"><?php _ex("Enable Voice Commands"); ?></label>
+    <div class="col-sm-6">
+      <div class="form-block">
+         <input id="voicetrading" value="" name="voicecommands" <?php if($user->voicecommands == 1){ echo 'checked '; } ?> type="checkbox" class="iswitch iswitch-secondary">
+      </div>
+    </div>
+</div>
+</div>
+</div>
 <div class="member-form-inputs ">
     <div class="row ">
 	<div class="col-sm-3 ">

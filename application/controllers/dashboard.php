@@ -59,7 +59,32 @@ class Dashboard extends Controller
 		require APP . 'views/dashboard/index.php';
         require APP . 'views/_templates/footer.php';
     }
-
+	
+	
+	public function verify()
+    {
+        // load views
+        require APP . 'views/_templates/header.php';
+        require APP . 'views/_templates/sidebar.php';
+        
+		//check if the user is logged in
+		if ($this->model->user() == ''):
+            header('location: ' . URL . '/user/login');
+			exit();
+        endif;
+        
+		//get the user details
+		$username = $this->model->user();
+        $site = $this->model->site();
+		$this->model->isverified($username, $site);
+		$this->model->isbanned($username, $site);		
+        $this->model->isemailverified($username, $site);
+		$this->model->sitenews($_GET['url']);
+		$this->model->twofacverify($username);
+        require APP . 'views/user/verify.php';
+        require APP . 'views/_templates/footer.php';
+    }
+	
     public function orders()
     {
         // load views
@@ -135,7 +160,7 @@ class Dashboard extends Controller
 			endif;
 		endif;
 		
-		$payees = $this->model->payees($username);
+		$payees = $this->model->payees($username,'');
         require APP . 'views/dashboard/payee.php';
         require APP . 'views/_templates/footer.php';
     }
@@ -300,10 +325,10 @@ class Dashboard extends Controller
     public function buycoin()
     {
         session_start();
-		if (!$this->model->isadmin() == true):
-		    echo 'Trading disabled until new wallet is implemented'; 
-		    die();
-		endif;
+		//if (!$this->model->isadmin() == true):
+		//   echo 'Trading disabled until new wallet is implemented'; 
+		//   die();
+		//endif;
 		//grab site model to get rows from settings table
         $site = $this->model->site();
 		$username = $this->model->user();

@@ -28,7 +28,7 @@
                   <input type="text" class="form-control" name="name" id="" placeholder="<?php _ex(" Enter Name "); ?>">
                 </div>
                 <div class="form-group">
-                  <input type="submit" value="<?php _ex("Generate API"); ?>" name="submit" class="btn btn-success pull-right">
+                  <input type="submit" id="generateapi" value="<?php _ex("Generate API"); ?>" name="submit" class="btn btn-success pull-right">
                 </div>
               </div>
           </form>

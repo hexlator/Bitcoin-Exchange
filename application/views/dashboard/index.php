@@ -1,3 +1,4 @@
+
 <style>
 #example-2_wrapper {
   max-height: 300px;
@@ -36,13 +37,15 @@ if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48
 
 });
 
-
 $(document).ready(function()
 { 
 done();
 openorders();
 sellupdate();
 buyupdate();
+
+
+
 
   $("#buycalctotal").click(function(e)
   {
@@ -383,7 +386,7 @@ jQuery(document).ready(function($)
   </div>
 </div>
 
-<div class="col-sm-6 ">
+<div class="col-sm-6" id="tradingsection">
 
   <div class="panel panel-default">
     <div class="panel-heading">

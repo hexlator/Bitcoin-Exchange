@@ -386,7 +386,7 @@ class User extends Controller
 					$this->model->encrypt($_POST['securitya1']), $this->model->encrypt($_POST['securityq2']),
                     $this->model->encrypt($_POST['securitya2']),$referer);
                 //generate the email activation code
-                if ($site->emailverify = 1)
+                if ($site->emailverify == 1)
                 {
 					$code = uniqid();
                     $emailactivate = $this->model->emailactivation($code,$this->model->decrypt($_POST['email']));
@@ -411,7 +411,7 @@ To verify, simply click this link: <a href="'.URL.'user/activationcode?code='.$c
                     echo '
                       <div class="col-md-5">
 					  <div class="alert alert-success">
-					  <strong>Welcome</strong> you have successfully registered. Please Verify your email
+					  <strong>Welcome</strong> you have successfully registered. Please login
 					  </div>
 					  </div>';
                 }
@@ -544,6 +544,9 @@ To verify, simply click this link: <a href="'.URL.'user/activationcode?code='.$c
         $password = isset($_POST['password']) ? $_POST['password'] : '';
 		$expandedsidebar = !empty($_POST['expandedsidebar']) ? 1 : 0;		
 		$expandedchat = !empty($_POST['expandedchat']) ? 1 : 0;
+		$voicetrading = !empty($_POST['voicetrading']) ? 1 : 0;
+		$emailonwithdraw = !empty($_POST['emailonwithdraw']) ? 1 : 0;
+
         $uppercase = preg_match('@[A-Z]@', $password);
         $lowercase = preg_match('@[a-z]@', $password);
         $number = preg_match('@[0-9]@', $password);
@@ -573,13 +576,15 @@ To verify, simply click this link: <a href="'.URL.'user/activationcode?code='.$c
         $p_salt = rand_string(20);
         $salted_hash = hash('sha256', $password . $site_salt . $p_salt);
         $sql1 = $this->db->prepare("UPDATE user SET email=?, password=?,
-		passwordsalt=?, sidebaropen=?,chatbaropen=? WHERE username=?");
+		passwordsalt=?, sidebaropen=?,chatbaropen=?, voicecommands=?, withdrawnotify=? WHERE username=?");
         $sql1->execute(array(
             $email,
             $salted_hash,
             $p_salt,
 			$expandedsidebar,
 			$expandedchat,
+			$voicetrading,
+			$emailonwithdraw,
             $user->username));
 		//add message
 			$this->model->newtoken();

@@ -6,6 +6,9 @@ echo gettext($text); }
 $this->model->sanatisesource(); 
 session_start(); 
 $site = $this->model->site(); 
+if(!isset($user)):
+$user = $this->model->user();
+endif;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -76,7 +79,11 @@ $site = $this->model->site();
   <script src="<?php echo URL; ?>js/amcharts.js" type="text/javascript"></script>
   <script src="<?php echo URL; ?>js/serial.js" type="text/javascript"></script>
   <script src="<?php echo URL; ?>js/amstock.js" type="text/javascript"></script>
-
+  <?php if($user->voicecommands == 1): ?>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/1.4.0/annyang.min.js"></script>
+  <script src="<?php echo URL; ?>js/voice.js" type="text/javascript"></script>
+  <?php endif; ?>
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -368,3 +375,40 @@ $site = $this->model->site();
 
     </div>
   </nav>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

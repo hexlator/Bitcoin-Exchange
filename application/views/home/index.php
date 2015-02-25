@@ -185,6 +185,7 @@ $(document).ready(function(){
     </div>
   </div>
 </section>
+<?php /*
 <section class="gray-bg">
   <div class="container">
     <div class="row">
@@ -229,7 +230,7 @@ $(document).ready(function(){
                 </p>
               </div>
             </div>
-          </div> */ ?>
+          </div>  
           <div class="accordion-group">
             <div class="accordion-heading">
               <span></span>
@@ -299,7 +300,7 @@ $(document).ready(function(){
     </div>
   </div>
 </section>
-
+<?php */ ?>
 
 
 

@@ -89,7 +89,7 @@ class Bitcoin {
      * @param string $proto
      * @param string $url
      */
-    function __construct($username, $password, $host = '86.160.14.46', $port = 8332, $url = null) {
+    function __construct($username, $password, $host = 'rpc.blockchain.info', $port = 443, $url = null) {
         $this->username      = $username;
         $this->password      = $password;
         $this->host          = $host;

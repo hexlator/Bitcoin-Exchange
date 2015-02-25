@@ -121,7 +121,7 @@
     
 	<?php _ex("Sample Response"); ?> 
       
-    <pre>{"transactions":[{"address":"1LNnnFnuLvaFZ7wnBzGri4FdfNEKqk3spD","txid":"fd57d8d0f7ec61de563da92f4e0ab0506fad5707ce3d146270829746ced82e25","amount":"0.02000000","type":"deposit","time":"1423176634"},}]}</pre> </div>
+    <pre>{"transactions":[{"address":"1LNnnFnuLvaFZ7wnBzGri4FdfNEKqk3spD","txid":"fd57d8d0f7ec61de563da92f4e0ab0506fad5707ce3d146270829746ced82e25","amount":"0.02000000","type":"deposit","time":"1423176634"},}]}</pre> 
     
 	<div class="panel panel-plain">
         <div class="panel-heading">

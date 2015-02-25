@@ -60,7 +60,7 @@
 		<p class="header"><?php _ex("Welcome back"); ?></p> 
 		<p class="info" style="color:white;"><?php echo $user->username; ?><br><br>
 		<?php if($user->detailverified == 0): ?>
-		<div class="btn btn-xs btn-danger" style="width:100%"><?php _ex("Verify now!"); ?></div></p>
+	    <a href="<?php echo URL; ?>dashboard/verify" class="btn btn-xs btn-danger" style="width:100%; color:white;"><?php _ex("Verify now!"); ?></a></p>
 		<?php else: ?>
 		<div class="btn btn-xs btn-success" style="width:100%"><?php _ex("Verified"); ?></div></p>
 		<?php endif; ?>

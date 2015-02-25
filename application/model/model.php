@@ -17,10 +17,9 @@ class Model
 	
 	    public function btccoin()
 	{
-	    //require APP . 'libs/easybitcoin.php';
-        require APP . 'libs/jsonRPCClient.php';
+        require APP . 'libs/jsonRPCClient.php'; 
 		$bitcoin = new jsonRPCClient("");
-	   
+
 	    return $bitcoin;	
 	}
 	
@@ -51,14 +50,14 @@ class Model
 	*/
 	public function encrypt($string)
 	{
-		$key = md5('cryptxelimited');
+		$key = md5('234');
 		$string = rtrim(base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256,$key,$string,MCRYPT_MODE_ECB)));
 		return $string;
 	}
 	
 	public function decrypt($string)
 	{
-	    $key = md5('cryptxelimited');
+	    $key = md5('234');
 		$string = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256,$key,base64_decode($string),MCRYPT_MODE_ECB));
 		return $string;
 	}
@@ -200,8 +199,11 @@ class Model
     public function registeruser($username, $password, $passwordsalt, $email, 
 	$security_question1, $security_answer1, $security_question2, $security_answer2,$referer)
     {
+		$notset = $this->encrypt("not set");
         $sql = "INSERT INTO `user` (`username`, `password`, `passwordsalt`, `email`,
-		`security_question1`, `security_answer1`, `security_question2`, `security_answer2`,`referer`) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		`security_question1`, `security_answer1`, `security_question2`, `security_answer2`,`referer`,
+		firstname,lastname,address1,address2,city,zip,state,country,dob) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?,
+		'".$notset."','".$notset."','".$notset."','".$notset."','".$notset."','".$notset."','".$notset."','".$notset."','".$notset."')";
         $query = $this->db->prepare($sql);
         $query->execute(array(
             $username,
@@ -553,36 +555,7 @@ class Model
 				//http://us3.php.net/manual/en/book.pdo.php#69304 -- need to secure the varible
 			$addcol = $this->db->prepare("ALTER TABLE user ADD ".htmlentities($coinname)." VARCHAR( 25 ) NOT NULL AFTER btc");
 			$addcol->execute();
-			//add wallet code to model file -- shitty way to do it but w/e
-			$depositfile = APP .'model/model.php';
-			$deposit = file_get_contents($depositfile);
-			$deposit = str_replace("
-				public function btccoin()
-				{
-					 require APP . 'libs/easybitcoin.php';
-					//require APP . 'libs/jsonRPCClient.php';
-					//\$bitcoin\ = new jsonRPCClient(\"http://cryptxe:corkish1@81.156.8.189:8332/\");
-					 \$bitcoin\ = new Bitcoin('cryptxe','corkish1','81.156.8.189','8332', true);
-					 return \$bitcoin\;
-					//print_r(\$bitcoin\->getinfo());
-				}","
-				    public function btccoin()
-					{
-						 require APP . 'libs/easybitcoin.php';
-						//require APP . 'libs/jsonRPCClient.php';
-						//\$bitcoin\ = new jsonRPCClient(\"http://cryptxe:corkish1@81.156.8.189:8332/\");
-						 \$bitcoin\ = new Bitcoin('cryptxe','corkish1','81.156.8.189','8332', true);
-						 return \$bitcoin\;
-						//print_r(\$bitcoin\->getinfo());
-					}
-				public function ".$coinname."coin()
-				{
-					require APP . 'libs/jsonRPCClient.php';
-					$".strtolower($cointitle)." = new ".$cointitle."('".$rpc."');
-					return $".strtolower($cointitle).";
-				}",$deposit);
-				
-			file_put_contents($depositfile,$deposit);
+			
             header('location: ' .ADMINURL.'/coins/');
     }
 
@@ -971,7 +944,7 @@ class Model
 	 */
 	public function ticker($type,$market,$buysell,$order=null)
 	{
-        $tickersHigh = $this->db->prepare("SELECT ".htmlentities($type,ENT_QUOTES)." FROM trades WHERE market=? ".htmlentities($buysell,ENT_QUOTES)."".htmlentities($order,ENT_QUOTES)."");
+        $tickersHigh = $this->db->prepare("SELECT ".$type." FROM trades WHERE market=? ".$buysell."".$order."");
 		$tickersHigh->execute(array(strtolower($market)));
 		$tickerHigh = $tickersHigh->fetch();
 		if($tickerHigh){
@@ -1097,10 +1070,6 @@ class Model
     	 */
 
 	
-	 public function cryptx()
-	{
-
-	}
 	
 	
 	public function wallet($startcoin,$coin,$generate=null)

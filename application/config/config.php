@@ -11,7 +11,7 @@
  * Useful to show every little problem during development, but only show hard errors in production
  */
 error_reporting(E_ALL);
-ini_set("display_errors", 1); 
+ini_set("display_errors", 0); 
 
 /**
  * Configuration for: URL
@@ -49,7 +49,7 @@ define('URL_PUB', $_SERVER['DOCUMENT_ROOT'] . '/'. URL_PUBLIC_FOLDER);
  */
 define('DB_TYPE', 'mysql');
 define('DB_HOST', '127.0.0.1');
-define('DB_NAME', 'cryptxe_exchange');
-define('DB_USER', 'cryptxe_exchange');
-define('DB_PASS', 'exchange1234');
+define('DB_NAME', 'ffjfj');
+define('DB_USER', 'cnge');
+define('DB_PASS', '1234');
 

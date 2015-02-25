@@ -1,9 +1,6 @@
+
 <script type="text/javascript">
-function CopyToClipboard()
-{
-  document.getElementById('wallet').focus();
-  document.getElementById('wallet').select();
-}
+
 jQuery(document).ready(function($)
 {
   $("#transactions").dataTable(
@@ -14,6 +11,11 @@ jQuery(document).ready(function($)
     ]
   });
 });
+function CopyToClipboard()
+{
+  document.getElementById('wallet').focus();
+  document.getElementById('wallet').select();
+}
 </script>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -28,10 +30,15 @@ jQuery(document).ready(function($)
       <div class="input-group">
         <input type="text" value="<?php echo $deposit;?>" id="wallet" class="form-control">
         <span class="input-group-addon">
-    <span onClick="CopyToClipboard(); return false" style="cursor: pointer; cursor: hand; "><?php _ex("Copy"); ?></span> </a>
-      </div>
+         <span onClick="CopyToClipboard(); return false" style="cursor: pointer; cursor: hand; "><?php _ex("Copy"); ?></span> </a>
+	    </span>
+	<span class="input-group-addon">
+	<a href="<?php echo URL; ?>coins/GenerateWallet?coin=btc"><span onClick="CopyToClipboard(); return false" style="cursor: pointer; cursor: hand; "><?php _ex("New Address"); ?></span> </a>
+     </span>
+	 </div>
     </div>
-    <p></p>
+    <br/>
+	</div>
     <table class="table table-bordered table-striped dataTable no-footer" id="transactions" role="grid" aria-describedby="transactions_info">
       <thead>
         <tr role="row">
